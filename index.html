@@ -35,8 +35,7 @@ table.edit{width:100%;border-collapse:collapse}.edit th,.edit td{border:1px soli
 <div style="height:14px"></div><div class="grid2"><div class="challenge"><div class="pill">🎯 DESAFIO ATUAL</div><div class="big" id="challenge">A carregar...</div><p id="challengeSub" class="small"></p></div><div class="challenge"><div class="pill">🆕 NEW TALENT CHALLENGE</div><div class="big">Cada venda de um Novo vale mais pontos.</div><p class="small">Ajudar os novos templários faz diferença no resultado.</p></div></div>
 <div style="height:14px"></div><div class="panel"><h2>🌱 NOVOS TEMPLÁRIOS</h2><div class="cards" id="newCards"></div></div>
 <div style="height:14px"></div><div class="panel"><h2>📜 REGRAS DE PONTUAÇÃO</h2><div id="rules"></div></div></main>
-<script>
-const {createClient}=window.supabase; const sb=createClient(window.SUPABASE_CONFIG.url,window.SUPABASE_CONFIG.publishableKey);let teams=[],members=[],sales=[],settings={};
+<script>const {createClient}=window.supabase; const sb=createClient(window.SUPABASE_CONFIG.url,window.SUPABASE_CONFIG.publishableKey);let teams=[],members=[],sales=[],settings={};
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
 const num=(k,d)=>Number.isFinite(Number(settings[k]))?Number(settings[k]):d;
 const ms=id=>sales.filter(s=>s.member_id===id).reduce((n,s)=>n+Number(s.quantity||0),0);
