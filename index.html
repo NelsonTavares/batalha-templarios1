@@ -1,106 +1,52 @@
-<!doctype html>
-<html lang="pt">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Batalha dos Templários — TETRARCHIA vs MEOsqueteiros</title>
-<script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+<!doctype html><html lang="pt"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Batalha dos Templários</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script>
 <style>
-:root{--bg:#090b10;--panel:#11151d;--panel2:#171c26;--gold:#d7ad61;--gold2:#f0d08b;--red:#8f2229;--red2:#c64a46;--blue:#173d55;--blue2:#3b91b9;--text:#f4eee3;--muted:#a9a29a;--line:#39342f}
-*{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at 50% -10%,#3b2a1d 0,#0b0d12 38%,#07080b 100%);color:var(--text);font-family:Georgia,"Times New Roman",serif}
+:root{--bg:#090b10;--panel:#11151d;--gold:#d7ad61;--gold2:#f0d08b;--text:#f4eee3;--muted:#a9a29a;--line:#39342f}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#3b2a1d 0,#0b0d12 38%,#07080b 100%);color:var(--text);font-family:Georgia,"Times New Roman",serif}
 button,input,select{font:inherit}.top{padding:18px 24px 10px;text-align:center;border-bottom:1px solid #40362c;background:linear-gradient(180deg,#16100d,#0a0c10)}
 .brand{font-size:28px;letter-spacing:7px;color:var(--gold2);text-shadow:0 2px 14px #000}.sub{font-size:11px;letter-spacing:4px;color:#c9bda8;margin-top:4px}
-nav{display:flex;gap:8px;justify-content:center;padding:12px;position:sticky;top:0;z-index:20;background:#090b10ee;backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-nav button,.btn{background:#181d26;color:var(--text);border:1px solid #554a3e;padding:9px 14px;border-radius:6px;cursor:pointer}nav button.active,.btn.primary{background:linear-gradient(#a56a2f,#63371f);border-color:var(--gold);color:#fff4dc}
-main{max-width:1500px;margin:auto;padding:16px}.view{display:none}.view.active{display:block}
-.hero{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:12px;align-items:stretch}.teamCard{min-height:245px;position:relative;overflow:hidden;border:1px solid #5d4c3b;border-radius:8px;background:#12161d;box-shadow:0 15px 40px #0008}.teamCard img{width:100%;height:160px;object-fit:cover;opacity:.7}.teamCard.red{border-color:#7e3437}.teamCard.blue{border-color:#31566d}.teamCard .shade{position:absolute;inset:80px 0 0;background:linear-gradient(transparent,#11151def)}.teamInfo{position:absolute;left:16px;right:16px;bottom:14px}.teamName{font-size:26px;letter-spacing:3px}.teamScore{font-size:42px;font-weight:bold;color:var(--gold2);margin-top:2px}.teamMeta{color:var(--muted);font-size:12px;letter-spacing:2px}
-.center{border:1px solid #5d4c3b;border-radius:8px;background:linear-gradient(180deg,#1b1712,#0e1117);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;min-height:245px}.center h1{font-size:28px;margin:0;color:var(--gold2)}.center p{color:#d2c3ad;letter-spacing:2px}.gap{font-size:22px;margin:8px 0;color:#fff}.bar{height:26px;border:1px solid #574a3b;background:#080a0e;border-radius:999px;padding:3px;position:relative;overflow:hidden}.bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#a44b2c,#e2b95e);transition:width .35s}.race{margin:18px 0;border:1px solid var(--line);padding:14px;background:#0c0f14}.raceLine{display:flex;align-items:center;gap:10px}.raceTrack{flex:1;height:36px;background:repeating-linear-gradient(90deg,#282a2e 0 28px,#17191d 28px 56px);border:1px solid #4a4a43;border-radius:7px;position:relative;overflow:hidden}.marker{position:absolute;top:2px;font-size:28px;transition:left .35s;filter:drop-shadow(0 2px 4px #000)}.finish{font-size:24px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.panel{background:linear-gradient(180deg,#141821,#0e1117);border:1px solid var(--line);border-radius:8px;padding:14px}.panel h2{margin:0 0 10px;color:var(--gold2);font-size:18px;letter-spacing:2px}.scoreTable{width:100%;border-collapse:collapse}.scoreTable th,.scoreTable td{padding:8px;border-bottom:1px solid #292b30;text-align:left}.scoreTable th{color:#cdbb9f;font-size:12px;text-transform:uppercase}.scoreTable td.num{text-align:right}.new{color:#efc46e;font-weight:bold}.challenge{text-align:center;background:radial-gradient(circle,#372416,#121419 70%);border:1px solid #725839;padding:18px;border-radius:8px}.challenge .big{font-size:26px;color:#fff0c9}.pill{display:inline-block;padding:5px 10px;border-radius:20px;border:1px solid #80613d;color:#f4d18d;margin:4px}
+nav{display:flex;gap:8px;justify-content:center;padding:12px;position:sticky;top:0;z-index:20;background:#090b10ee;border-bottom:1px solid var(--line)}
+.btn{background:#181d26;color:var(--text);border:1px solid #554a3e;padding:9px 14px;border-radius:6px;cursor:pointer}.btn.primary{background:linear-gradient(#a56a2f,#63371f);border-color:var(--gold);color:#fff4dc}
+main{max-width:1500px;margin:auto;padding:16px}.hero{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:12px}.teamCard{min-height:245px;position:relative;overflow:hidden;border:1px solid #5d4c3b;border-radius:8px;background:#12161d;box-shadow:0 15px 40px #0008}.teamCard img{width:100%;height:160px;object-fit:cover;opacity:.7}.shade{position:absolute;inset:80px 0 0;background:linear-gradient(transparent,#11151def)}.teamInfo{position:absolute;left:16px;right:16px;bottom:14px}.teamName{font-size:26px;letter-spacing:3px}.teamScore{font-size:42px;font-weight:bold;color:var(--gold2)}.teamMeta{color:var(--muted);font-size:12px;letter-spacing:2px}
+.center{border:1px solid #5d4c3b;border-radius:8px;background:linear-gradient(180deg,#1b1712,#0e1117);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;min-height:245px}.center h1{font-size:28px;margin:0;color:var(--gold2)}.center p{color:#d2c3ad;letter-spacing:2px}.gap{font-size:22px;margin:8px 0}.bar{height:26px;border:1px solid #574a3b;background:#080a0e;border-radius:999px;padding:3px;overflow:hidden}.bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#a44b2c,#e2b95e);transition:width .35s}
+.race{margin:18px 0;border:1px solid var(--line);padding:14px;background:#0c0f14}.raceLine{display:flex;align-items:center;gap:10px}.raceTrack{flex:1;height:36px;background:repeating-linear-gradient(90deg,#282a2e 0 28px,#17191d 28px 56px);border:1px solid #4a4a43;border-radius:7px;position:relative;overflow:hidden}.marker{position:absolute;top:2px;font-size:28px;transition:left .35s}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.panel{background:linear-gradient(180deg,#141821,#0e1117);border:1px solid var(--line);border-radius:8px;padding:14px}.panel h2{margin:0 0 10px;color:var(--gold2);font-size:18px;letter-spacing:2px}
+.scoreTable{width:100%;border-collapse:collapse}.scoreTable th,.scoreTable td{padding:8px;border-bottom:1px solid #292b30;text-align:left}.scoreTable th{color:#cdbb9f;font-size:12px;text-transform:uppercase}.scoreTable td.num{text-align:right}.new{color:#efc46e;font-weight:bold}
+.challenge{text-align:center;background:radial-gradient(circle,#372416,#121419 70%);border:1px solid #725839;padding:18px;border-radius:8px}.challenge .big{font-size:26px;color:#fff0c9}.pill{display:inline-block;padding:5px 10px;border-radius:20px;border:1px solid #80613d;color:#f4d18d;margin:4px}
 .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.mini{background:#0d1117;border:1px solid #37383b;padding:12px;border-radius:7px}.mini strong{display:block;font-size:18px}.mini span{color:#aaa}
-.formgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.field label{display:block;color:#bfb4a2;font-size:12px;margin-bottom:4px}.field input,.field select{width:100%;background:#0b0e13;color:#eee;border:1px solid #4b4b4b;border-radius:5px;padding:8px}
 .toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.notice{padding:10px;border:1px solid #574a3b;background:#17130f;color:#dbc8a7;border-radius:6px;margin:10px 0}
 table.edit{width:100%;border-collapse:collapse}.edit th,.edit td{border:1px solid #30333a;padding:6px}.edit input,.edit select{width:100%;background:#090c11;color:#eee;border:0;padding:7px}
-.small{font-size:12px;color:var(--muted)}.right{text-align:right}.hidden{display:none!important}
+.field label{display:block;color:#bfb4a2;font-size:12px;margin-bottom:4px}.field input,.field select{width:100%;background:#0b0e13;color:#eee;border:1px solid #4b4b4b;border-radius:5px;padding:8px}
+.formgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.small{font-size:12px;color:var(--muted)}.hidden{display:none!important}.auth{max-width:460px;margin:50px auto}.auth input{width:100%;margin:6px 0 12px;padding:11px;background:#0b0e13;color:#fff;border:1px solid #4b4b4b;border-radius:6px}
 @media(max-width:1000px){.hero,.grid2{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}.formgrid{grid-template-columns:1fr 1fr}}
 @media(max-width:650px){.cards,.formgrid{grid-template-columns:1fr}.brand{font-size:21px;letter-spacing:4px}.teamScore{font-size:34px}}
-</style>
-</head>
-<body>
-<header class="top"><div class="brand">TETRARCHIA</div><div style="margin-top:7px;color:#e0c98e;font-size:12px;letter-spacing:2px">⚔️ PAINEL PÚBLICO — APENAS CONSULTA</div><div class="sub">SALES + STRATEGY + RESULTS + TOGETHER</div></header>
-<nav>
-<button data-view="dash" class="active">⚔️ Batalha dos Templários</button>
-</nav>
-<main>
-<section id="dash" class="view active">
-  <div class="hero">
-    <div class="teamCard red"><img id="imgA" src="tetrarchia.png"><div class="shade"></div><div class="teamInfo"><div class="teamName" id="nameA">TETRARCHIA</div><div class="teamScore" id="scoreA">0</div><div class="teamMeta">PONTOS • <span id="salesA">0</span> VENDAS</div></div></div>
-    <div class="center"><h1>⚔️ BATALHA DOS TEMPLÁRIOS</h1><p>CADA VENDA APROXIMA-NOS DA VITÓRIA</p><div class="gap" id="gapText">A batalha começa agora.</div><div style="width:90%;margin:10px"><div class="bar"><i id="goalBar" style="width:0%"></i></div></div><div class="small" id="goalText">Objetivo do dia: 100 pontos</div></div>
-    <div class="teamCard blue"><img id="imgB" src="meosqueteiros.jpeg"><div class="shade"></div><div class="teamInfo"><div class="teamName" id="nameB">MEOsqueteiros</div><div class="teamScore" id="scoreB">0</div><div class="teamMeta">PONTOS • <span id="salesB">0</span> VENDAS</div></div></div>
-  </div>
-  <div class="race"><div class="raceLine"><span>🏰</span><div class="raceTrack"><span class="marker" id="markerA">🐎</span></div><span class="finish">🏁</span></div><div style="height:7px"></div><div class="raceLine"><span>🏰</span><div class="raceTrack"><span class="marker" id="markerB">🛡️</span></div><span class="finish">🏁</span></div></div>
-  <div class="grid2">
-    <div class="panel"><h2>⚔️ CLASSIFICAÇÃO — <span id="rankNameA">TETRARCHIA</span></h2><table class="scoreTable"><thead><tr><th>#</th><th>Nome</th><th>Tipo</th><th>Vendas</th><th>Pontos</th></tr></thead><tbody id="tableA"></tbody></table></div>
-    <div class="panel"><h2>⚔️ CLASSIFICAÇÃO — <span id="rankNameB">MEOsqueteiros</span></h2><table class="scoreTable"><thead><tr><th>#</th><th>Nome</th><th>Tipo</th><th>Vendas</th><th>Pontos</th></tr></thead><tbody id="tableB"></tbody></table></div>
-  </div>
-  <div style="height:14px"></div>
-  <div class="grid2">
-    <div class="challenge"><div class="pill">🎯 DESAFIO ATUAL</div><div class="big" id="challenge">Introduz as primeiras vendas.</div><p id="challengeSub" class="small"></p></div>
-    <div class="challenge"><div class="pill">⚡ SPRINT</div><div class="big" id="sprint">Desligado</div><p id="sprintSub" class="small"></p></div>
-  </div>
-  <div style="height:14px"></div>
-  <div class="panel"><h2>🌱 NEW TALENT CHALLENGE</h2><div class="cards" id="newCards"></div></div>
-  <div style="height:14px"></div>
-  <div class="panel"><h2>📜 REGRAS DE PONTUAÇÃO</h2><div id="rules"></div></div>
-</section>
-
-
-</main>
+</style></head><body>
+<header class="top"><div class="brand">TETRARCHIA</div><div style="margin-top:7px;color:#e0c98e;font-size:12px;letter-spacing:2px">⚔️ BATALHA TEMPLÁRIA — PAINEL PÚBLICO</div><div class="sub">SALES + STRATEGY + RESULTS + TOGETHER</div></header>
+<main><div class="hero">
+<div class="teamCard"><img id="imgA" src="tetrarchia.png"><div class="shade"></div><div class="teamInfo"><div class="teamName" id="nameA">TETRARCHIA</div><div class="teamScore" id="scoreA">0</div><div class="teamMeta">PONTOS • <span id="salesA">0</span> VENDAS</div></div></div>
+<div class="center"><h1>⚔️ BATALHA DOS TEMPLÁRIOS</h1><p>CADA VENDA APROXIMA-NOS DA VITÓRIA</p><div class="gap" id="gapText">A carregar...</div><div style="width:90%;margin:10px"><div class="bar"><i id="goalBar" style="width:0%"></i></div></div><div class="small" id="goalText"></div></div>
+<div class="teamCard"><img id="imgB" src="meosqueteiros.jpeg"><div class="shade"></div><div class="teamInfo"><div class="teamName" id="nameB">MEOsqueteiros</div><div class="teamScore" id="scoreB">0</div><div class="teamMeta">PONTOS • <span id="salesB">0</span> VENDAS</div></div></div>
+</div>
+<div class="race"><div class="raceLine"><span>🏰</span><div class="raceTrack"><span class="marker" id="markerA">🐎</span></div><span>🏁</span></div><div style="height:7px"></div><div class="raceLine"><span>🏰</span><div class="raceTrack"><span class="marker" id="markerB">🛡️</span></div><span>🏁</span></div></div>
+<div class="grid2"><div class="panel"><h2>⚔️ CLASSIFICAÇÃO — <span id="rankNameA">TETRARCHIA</span></h2><table class="scoreTable"><thead><tr><th>#</th><th>Nome</th><th>Tipo</th><th>Vendas</th><th>Pontos</th></tr></thead><tbody id="tableA"></tbody></table></div>
+<div class="panel"><h2>⚔️ CLASSIFICAÇÃO — <span id="rankNameB">MEOsqueteiros</span></h2><table class="scoreTable"><thead><tr><th>#</th><th>Nome</th><th>Tipo</th><th>Vendas</th><th>Pontos</th></tr></thead><tbody id="tableB"></tbody></table></div></div>
+<div style="height:14px"></div><div class="grid2"><div class="challenge"><div class="pill">🎯 DESAFIO ATUAL</div><div class="big" id="challenge">A carregar...</div><p id="challengeSub" class="small"></p></div><div class="challenge"><div class="pill">🆕 NEW TALENT CHALLENGE</div><div class="big">Cada venda de um Novo vale mais pontos.</div><p class="small">Ajudar os novos templários faz diferença no resultado.</p></div></div>
+<div style="height:14px"></div><div class="panel"><h2>🌱 NOVOS TEMPLÁRIOS</h2><div class="cards" id="newCards"></div></div>
+<div style="height:14px"></div><div class="panel"><h2>📜 REGRAS DE PONTUAÇÃO</h2><div id="rules"></div></div></main>
 <script>
-const DEFAULT={
- cfg:{a:"TETRARCHIA",b:"MEOsqueteiros",seniorPts:1,newPts:2,goal:100,addon:1,streak:1,assist:1},
- rows:[
-  {name:"Pessoa 1",team:"TETRARCHIA",sales:0,type:"Sénior"},
-  {name:"Pessoa 2",team:"TETRARCHIA",sales:0,type:"Novo"},
-  {name:"Pessoa 3",team:"TETRARCHIA",sales:0,type:"Novo"},
-  {name:"Pessoa 4",team:"TETRARCHIA",sales:0,type:"Sénior"},
-  {name:"Pessoa 5",team:"MEOsqueteiros",sales:0,type:"Sénior"},
-  {name:"Pessoa 6",team:"MEOsqueteiros",sales:0,type:"Novo"},
-  {name:"Pessoa 7",team:"MEOsqueteiros",sales:0,type:"Novo"},
-  {name:"Pessoa 8",team:"MEOsqueteiros",sales:0,type:"Sénior"}
- ]};
-let state=JSON.parse(localStorage.getItem("templariosRace")||"null")||structuredClone(DEFAULT);
-function save(){localStorage.setItem("templariosRace",JSON.stringify(state)); render();}
-function pts(r){return (+r.sales||0)*(r.type==="Novo"?+state.cfg.newPts:+state.cfg.seniorPts)}
-function teamRows(t){return state.rows.filter(r=>r.team===t)}
-function teamPts(t){return teamRows(t).reduce((s,r)=>s+pts(r),0)}
-function teamSales(t){return teamRows(t).reduce((s,r)=>s+(+r.sales||0),0)}
-function render(){
- const c=state.cfg, a=c.a,b=c.b; document.getElementById("nameA").textContent=a;document.getElementById("nameB").textContent=b;document.getElementById("rankNameA").textContent=a;document.getElementById("rankNameB").textContent=b;
- const pa=teamPts(a),pb=teamPts(b),sa=teamSales(a),sb=teamSales(b);
- ["A","B"].forEach(x=>{let t=x==="A"?a:b,p=x==="A"?pa:pb,s=x==="A"?sa:sb;document.getElementById("score"+x).textContent=p;document.getElementById("sales"+x).textContent=s;document.getElementById("marker"+x).style.left=Math.min(94,p/c.goal*94)+"%";});
- const max=Math.max(pa,pb),bar=Math.min(100,max/c.goal*100);document.getElementById("goalBar").style.width=bar+"%";document.getElementById("goalText").textContent=`Objetivo: ${c.goal} pontos`;
- if(pa===pb) document.getElementById("gapText").textContent="⚔️ EMPATE — A PRÓXIMA VENDA PODE MUDAR TUDO!";
- else {let lead=pa>pb?a:b,gap=Math.abs(pa-pb);document.getElementById("gapText").textContent=`${lead} lidera por ${gap} ponto${gap===1?"":"s"}.`;}
- document.getElementById("challenge").textContent=pa===pb?"EMPATE! QUEM CONQUISTA A PRÓXIMA VENDA?":`FALTAM ${Math.abs(pa-pb)} PONTO${Math.abs(pa-pb)===1?"":"S"} PARA A OUTRA EQUIPA PASSAR!`;
- document.getElementById("challengeSub").textContent="Cada venda dos Novos vale mais pontos — puxem por eles.";
- fillTable("tableA",a);fillTable("tableB",b);fillNew();fillRules();fillEdit();fillConfig();
-}
-function fillTable(id,t){let arr=teamRows(t).sort((x,y)=>pts(y)-pts(x));document.getElementById(id).innerHTML=arr.map((r,i)=>`<tr><td>${i+1}</td><td>${r.name}</td><td class="${r.type==="Novo"?"new":""}">${r.type}</td><td class="num">${r.sales}</td><td class="num"><b>${pts(r)}</b></td></tr>`).join("")||'<tr><td colspan="5">Sem elementos</td></tr>'}
-function fillNew(){let n=state.rows.filter(r=>r.type==="Novo");document.getElementById("newCards").innerHTML=n.map(r=>`<div class="mini"><strong>🆕 ${r.name}</strong><span>${r.team}</span><br><b>${r.sales} vendas → ${pts(r)} pontos</b></div>`).join("")||"<div class='small'>Ainda não existem Novos.</div>"}
-function fillRules(){let c=state.cfg;document.getElementById("rules").innerHTML=`<span class="pill">🛡️ Sénior = ${c.seniorPts} ponto/venda</span><span class="pill">🆕 Novo = ${c.newPts} pontos/venda</span><span class="pill">➕ Produto adicional = +${c.addon}</span><span class="pill">🔥 2 consecutivas = +${c.streak}</span><span class="pill">🤝 Sénior ajuda Novo = +${c.assist}</span>`}
-function fillEdit(){document.getElementById("editBody").innerHTML=state.rows.map((r,i)=>`<tr><td><input value="${esc(r.name)}" onchange="upd(${i},'name',this.value)"></td><td><select onchange="upd(${i},'team',this.value)"><option ${r.team===state.cfg.a?"selected":""}>${esc(state.cfg.a)}</option><option ${r.team===state.cfg.b?"selected":""}>${esc(state.cfg.b)}</option></select></td><td><input type="number" min="0" value="${r.sales}" onchange="upd(${i},'sales',this.value)"></td><td><select onchange="upd(${i},'type',this.value)"><option ${r.type==="Sénior"?"selected":""}>Sénior</option><option ${r.type==="Novo"?"selected":""}>Novo</option></select></td><td>${pts(r)}</td><td><button class="btn" onclick="delRow(${i})">✕</button></td></tr>`).join("")}
-function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
-function upd(i,k,v){state.rows[i][k]=k==="sales"?Math.max(0,+v||0):v;save()}
-function addRow(){state.rows.push({name:"Novo Templário",team:state.cfg.a,sales:0,type:"Novo"});save()}
-function delRow(i){if(confirm("Remover este elemento?")){state.rows.splice(i,1);save()}}
-function saveConfig(){let c=state.cfg;c.a=document.getElementById("cfgA").value||"TETRARCHIA";c.b=document.getElementById("cfgB").value||"MEOsqueteiros";c.seniorPts=+document.getElementById("seniorPts").value;c.newPts=+document.getElementById("newPts").value;c.goal=+document.getElementById("goal").value;c.addon=+document.getElementById("addon").value;c.streak=+document.getElementById("streak").value;c.assist=+document.getElementById("assist").value;state.rows.forEach(r=>{if(r.team!==c.a&&r.team!==c.b)r.team=c.a});save()}
-function fillConfig(){let c=state.cfg;for(const [id,v] of Object.entries({cfgA:c.a,cfgB:c.b,seniorPts:c.seniorPts,newPts:c.newPts,goal:c.goal,addon:c.addon,streak:c.streak,assist:c.assist}))document.getElementById(id).value=v}
-function resetData(){if(confirm("Repor os dados de exemplo?")){state=structuredClone(DEFAULT);save()}}
-function exportCSV(){let rows=[["Nome","Equipa","Vendas","Tipo","Pontos"],...state.rows.map(r=>[r.name,r.team,r.sales,r.type,pts(r)])];let csv=rows.map(r=>r.map(x=>`"${String(x).replaceAll('"','""')}"`).join(";")).join("\\n");let a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));a.download="templarios_vendas.csv";a.click()}
-function downloadTemplate(){let rows=[["Nome","Equipa","Vendas","Tipo"],["Pessoa 1",state.cfg.a,0,"Sénior"],["Pessoa 2",state.cfg.a,0,"Novo"],["Pessoa 3",state.cfg.b,0,"Novo"],["Pessoa 4",state.cfg.b,0,"Sénior"]];let ws=XLSX.utils.aoa_to_sheet(rows),wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,"Vendas");XLSX.writeFile(wb,"modelo_templarios.xlsx")}
-function importExcel(e){let f=e.target.files[0];if(!f)return;let reader=new FileReader();reader.onload=ev=>{try{if(typeof XLSX==="undefined"){alert("O leitor Excel não carregou. Abre o site com internet ou usa CSV.");return}let wb=XLSX.read(ev.target.result,{type:"array"}),ws=wb.Sheets[wb.SheetNames[0]],rows=XLSX.utils.sheet_to_json(ws,{defval:""});if(!rows.length){alert("O ficheiro não tem dados.");return}let norm=x=>String(x).trim().toLowerCase();state.rows=rows.map(r=>({name:r.Nome||r.nome||r.NAME||"Sem nome",team:r.Equipa||r.equipa||state.cfg.a,sales:+(r.Vendas||r.vendas||0),type:(norm(r.Tipo||r.tipo)==="novo"?"Novo":"Sénior")}));state.rows.forEach(r=>{if(r.team!==state.cfg.a&&r.team!==state.cfg.b)r.team=state.cfg.a});save();alert("Excel importado com sucesso.");}catch(err){alert("Não consegui ler o Excel: "+err.message)}};reader.readAsArrayBuffer(f);e.target.value=""}
-function setImage(e,team){let f=e.target.files[0];if(!f)return;let rd=new FileReader();rd.onload=ev=>{document.getElementById("img"+team).src=ev.target.result;localStorage.setItem("img"+team,ev.target.result)};rd.readAsDataURL(f)}
-// Dashboard público: sem controlos de edição.
-["A","B"].forEach(x=>{let v=localStorage.getItem("img"+x);if(v)document.getElementById("img"+x).src=v});
-render();
-</script>
-</body></html>
+const {createClient}=window.supabase; const supabase=createClient(window.SUPABASE_CONFIG.url,window.SUPABASE_CONFIG.publishableKey);
+let teams=[],members=[],sales=[],settings={};
+const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+const num=(k,d)=>Number.isFinite(Number(settings[k]))?Number(settings[k]):d;
+const ms=id=>sales.filter(s=>s.member_id===id).reduce((n,s)=>n+Number(s.quantity||0),0);
+const mp=m=>ms(m.id)*(m.is_new?num('points_new_member_sale',2):num('points_normal_sale',1));
+function table(id,tid){const a=members.filter(m=>m.team_id===tid).sort((x,y)=>mp(y)-mp(x)||x.name.localeCompare(y.name));document.getElementById(id).innerHTML=a.map((m,i)=>`<tr><td>${i+1}</td><td>${esc(m.name)}</td><td class="${m.is_new?'new':''}">${m.is_new?'Novo':'Sénior'}</td><td class="num">${ms(m.id)}</td><td class="num"><b>${mp(m)}</b></td></tr>`).join('')||'<tr><td colspan="5">Sem elementos</td></tr>';}
+function render(){const a=teams.find(t=>t.name==='TETRARCHIA'),b=teams.find(t=>t.name==='MEOsqueteiros');if(!a||!b)return;const ta=members.filter(m=>m.team_id===a.id),tb=members.filter(m=>m.team_id===b.id);const sa=ta.reduce((n,m)=>n+ms(m.id),0),sb=tb.reduce((n,m)=>n+ms(m.id),0),pa=ta.reduce((n,m)=>n+mp(m),0),pb=tb.reduce((n,m)=>n+mp(m),0),goal=num('goal_points',100);
+document.getElementById('scoreA').textContent=pa;document.getElementById('scoreB').textContent=pb;document.getElementById('salesA').textContent=sa;document.getElementById('salesB').textContent=sb;document.getElementById('goalBar').style.width=Math.min(100,Math.max(pa,pb)/goal*100)+'%';document.getElementById('goalText').textContent=`Objetivo: ${goal} pontos`;document.getElementById('markerA').style.left=Math.min(94,pa/goal*94)+'%';document.getElementById('markerB').style.left=Math.min(94,pb/goal*94)+'%';
+const gap=Math.abs(pa-pb);document.getElementById('gapText').textContent=gap?'⚔️ '+(pa>pb?a.name:b.name)+' lidera por '+gap+' ponto'+(gap===1?'':'s')+'.':'⚔️ EMPATE — A PRÓXIMA VENDA PODE MUDAR TUDO!';document.getElementById('challenge').textContent=gap?'FALTAM '+gap+' PONTO'+(gap===1?'':'S')+' PARA A OUTRA EQUIPA PASSAR!':'EMPATE! QUEM CONQUISTA A PRÓXIMA VENDA?';document.getElementById('challengeSub').textContent='Cada venda dos Novos vale mais pontos — puxem por eles.';table('tableA',a.id);table('tableB',b.id);
+document.getElementById('newCards').innerHTML=members.filter(m=>m.is_new).map(m=>`<div class="mini"><strong>🆕 ${esc(m.name)}</strong><span>${m.team_id===a.id?a.name:b.name}</span><br><b>${ms(m.id)} vendas → ${mp(m)} pontos</b></div>`).join('');
+document.getElementById('rules').innerHTML=`<span class="pill">🛡️ Sénior = ${num('points_normal_sale',1)} ponto/venda</span><span class="pill">🆕 Novo = ${num('points_new_member_sale',2)} pontos/venda</span>`;}
+async function load(){const [t,m,s,st]=await Promise.all([supabase.from('teams').select('*').order('id'),supabase.from('members').select('*').eq('active',true).order('name'),supabase.from('sales').select('*'),supabase.from('settings').select('setting_key,setting_value')]);if(t.error||m.error||s.error||st.error){document.getElementById('gapText').textContent='⚠️ Erro ao carregar a batalha.';console.error(t.error,m.error,s.error,st.error);return;}teams=t.data||[];members=m.data||[];sales=s.data||[];settings=Object.fromEntries((st.data||[]).map(x=>[x.setting_key,x.setting_value]));render();} load(); setInterval(load,30000);
+</script></body></html>
