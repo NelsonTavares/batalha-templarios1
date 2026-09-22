@@ -36,7 +36,7 @@ table.edit{width:100%;border-collapse:collapse}.edit th,.edit td{border:1px soli
 <div style="height:14px"></div><div class="panel"><h2>🌱 NOVOS TEMPLÁRIOS</h2><div class="cards" id="newCards"></div></div>
 <div style="height:14px"></div><div class="panel"><h2>📜 REGRAS DE PONTUAÇÃO</h2><div id="rules"></div></div></main>
 <script>
-const {createClient}=window.supabase; const supabase=createClient(window.SUPABASE_CONFIG.url,window.SUPABASE_CONFIG.publishableKey);let teams=[],members=[],sales=[],settings={};
+const {createClient}=window.supabase; const sb=createClient(window.SUPABASE_CONFIG.url,window.SUPABASE_CONFIG.publishableKey);let teams=[],members=[],sales=[],settings={};
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
 const num=(k,d)=>Number.isFinite(Number(settings[k]))?Number(settings[k]):d;
 const ms=id=>sales.filter(s=>s.member_id===id).reduce((n,s)=>n+Number(s.quantity||0),0);
